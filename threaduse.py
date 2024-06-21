@@ -18,7 +18,7 @@ def search_key_words(words_to_find: list[str], text: str, words_found: dict):
     logging.debug("Done.")
 
 
-def handle_threads(file_list: list[str], words_to_find) -> dict:
+def handle_threads(file_list: list[str], words_to_find):
     threads = []
     words_found = {}
     for text in file_list:
