@@ -38,7 +38,8 @@ def handle_threads(file_list: list[str], words_to_find):
     time.sleep(0.1)
 
     utils.print_results(words_found)
-    print("\nExecution time:", time.time() - time_now)
+    time.sleep(0.1)
+    logging.debug(f"Execution time: {time.time() - time_now}")
 
 
 if __name__ == "__main__":

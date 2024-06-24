@@ -12,12 +12,7 @@ logger.addHandler(stream_handler)
 logger.setLevel(logging.DEBUG)
 
 
-def search_key_words(
-    # words_to_find: list[str],
-    # text: str | list,
-    # words_found: dict,
-    queue: Queue,
-):
+def search_key_words(queue: Queue):
     name = current_process().name
     logger.debug(f"{name} started...")
     words_to_find, text, words_found = queue.get()
@@ -57,7 +52,6 @@ def handle_processes(file_list: list[str], words_to_find):
         splitter = 0
 
     with Manager() as manager:
-        # words_found = manager.dict()
         words_found = {}
         # create a dict with sought words as keys
         for word in words_to_find:
@@ -83,11 +77,12 @@ def handle_processes(file_list: list[str], words_to_find):
             texts = file_list[start_index:end_index]
             end_index = start_index
             splitter -= 1
+
         logger.debug("No more texts to process. Printing out the results..")
         time.sleep(0.1)
 
         utils.print_results(words_found)
-        print("\nExecution time:", time.time() - time_now)
+        logger.debug(f"\nExecution time: {time.time() - time_now}")
 
 
 if __name__ == "__main__":
